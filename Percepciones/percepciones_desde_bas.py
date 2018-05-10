@@ -1,6 +1,6 @@
-from CargadorDatosProveedorBAS import CargadorDatosProveedorBAS
-from GeneradorArchivosPercepciones import GeneradorArchivosPercepciones
-from GestorClientes import GestorClientes
+from Percepciones.CargadorDatosProveedorBAS import CargadorDatosProveedorBAS
+from Percepciones.GeneradorArchivosPercepciones import GeneradorArchivosPercepciones
+from Percepciones.GestorClientes import GestorClientes
 
 ARCH_ENTRADA_PERCEPCIONES = "listado_percepciones.csv"
 ARCH_PERCEPCIONES = "percepciones"
@@ -21,5 +21,3 @@ def generar_archivos_percepciones():
     generador_archivos.generar_archivos(ARCH_ANULACIONES, anulaciones)
 
     gestor_clientes.generar_archivo_clientes_nuevos()
-
-generar_archivos_percepciones()

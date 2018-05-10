@@ -1,4 +1,4 @@
-from DescripcionesPercepciones import *
+from Percepciones.DescripcionesPercepciones import *
 from utils import completar_con_espacios, SEPARADOR
 
 class PercepcionBase:

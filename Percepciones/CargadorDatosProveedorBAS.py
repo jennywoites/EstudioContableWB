@@ -1,6 +1,6 @@
 from utils import *
-from Percepcion import Percepcion
-from Anulacion import Anulacion
+from Percepciones.Percepcion import Percepcion
+from Percepciones.Anulacion import Anulacion
 
 ABREVIADO_FACTURA = "FAC"
 ABREVIADO_NOTA_DE_CREDITO = "NCR"

@@ -1,4 +1,4 @@
-from PercepcionBase import *
+from Percepciones.PercepcionBase import *
 
 class Anulacion(PercepcionBase):
 

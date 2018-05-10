@@ -1,0 +1,3 @@
+from Percepciones.percepciones_desde_bas import generar_archivos_percepciones
+
+generar_archivos_percepciones()
