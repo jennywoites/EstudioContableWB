@@ -1,16 +1,22 @@
 from utils import *
-
-ARCH_CLIENTES_CARGADOS = "CLIENTES_CARGADOS.csv"
-ARCH_NUEVOS_CLIENTES = "nuevos_clientes.txt"
+import os
 
 class GestorClientes:
-    def __init__(self):
+    def __init__(self, arch_clientes_cargados, arch_nuevos_clientes):
         self.clientes = {}
+        self.arch_clientes_cargados = arch_clientes_cargados
+
         self.clientes_nuevos = {}
+        self.arch_nuevos_clientes = arch_nuevos_clientes
 
     def cargar_clientes_previos(self):
         self.clientes = {}
-        with open(ARCH_CLIENTES_CARGADOS, "r") as f_clientes:
+        if not os.path.exists(self.arch_clientes_cargados):
+            with open(self.arch_clientes_cargados, 'w') as f:
+                pass
+            return self.clientes
+
+        with open(self.arch_clientes_cargados, "r") as f_clientes:
             for linea in f_clientes:
                 linea = linea.rstrip(ENTER)
                 razon_social, cuit = linea.split(SEPARADOR)
@@ -36,8 +42,8 @@ class GestorClientes:
         if not self.clientes_nuevos:
             return
 
-        with open(ARCH_CLIENTES_CARGADOS, "a") as f_clientes_cargados:
-            with open(ARCH_NUEVOS_CLIENTES, "w") as f_clientes_nuevos:
+        with open(self.arch_clientes_cargados, "a") as f_clientes_cargados:
+            with open(self.arch_nuevos_clientes, "w") as f_clientes_nuevos:
                 for cuit in self.clientes_nuevos:
                     razon_social = self.clientes_nuevos[cuit]
                     f_clientes_cargados.write(razon_social + SEPARADOR + cuit + ENTER)

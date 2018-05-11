@@ -73,12 +73,12 @@ class CargadorDatosProveedorBAS:
     def limpiar_dato(self, dato):
         nuevo_dato = ""
         for caracter in dato:
-            if not caracter.isdigit() and not caracter in ".,":
+            if not caracter.isdigit() and not caracter in ".,-":
                 while(SEPARADOR in dato):
                     dato = dato.replace(SEPARADOR, " ")
                 return dato
 
-            if caracter == ".":
+            if caracter in ".-":
                 continue
             nuevo_dato += self.SEPARADOR_NUMERO if caracter == SEPARADOR else caracter
         return nuevo_dato
