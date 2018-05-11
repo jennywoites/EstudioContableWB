@@ -24,7 +24,7 @@ def elegir_cliente():
 def obtener_nombres_de_archivos():
     print("Elija el cliente para el cual va a generar los datos")
     for num, cliente in enumerate(CLIENTES):
-        print("{}: {}".fromat(num, cliente))
+        print("{}: {}".format(num, cliente))
     opcion_elegida = input("Cliente: ")
     if not opcion_elegida.isdigit() or int(opcion_elegida) >= len(CLIENTES):
         print("Opción no válida")
