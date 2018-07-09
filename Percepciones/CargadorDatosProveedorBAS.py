@@ -69,7 +69,10 @@ class CargadorDatosProveedorBAS:
     SEPARADOR_NUMERO = "||"
 
     def guardar_numero(self, dato):
-        return dato.replace(self.SEPARADOR_NUMERO, ",")
+        numero = dato.replace(self.SEPARADOR_NUMERO, ",")
+        while "." in numero:
+            numero = numero.replace(".", "")
+        return numero
 
     def limpiar_dato(self, dato):
         nuevo_dato = ""
