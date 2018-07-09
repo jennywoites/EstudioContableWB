@@ -12,11 +12,11 @@ class GestorClientes:
     def cargar_clientes_previos(self):
         self.clientes = {}
         if not os.path.exists(self.arch_clientes_cargados):
-            with open(self.arch_clientes_cargados, 'w') as f:
+            with open(self.arch_clientes_cargados, 'w', encoding="latin1") as f:
                 pass
             return self.clientes
 
-        with open(self.arch_clientes_cargados, "r") as f_clientes:
+        with open(self.arch_clientes_cargados, "r", encoding="latin1") as f_clientes:
             for linea in f_clientes:
                 linea = linea.rstrip(ENTER)
                 razon_social, cuit = linea.split(SEPARADOR)
@@ -38,6 +38,11 @@ class GestorClientes:
         linea += ENTER        
         return linea
 
+    def eliminar_comas(self, razon_social):
+        while "," in razon_social:
+            razon_social = razon_social.replace(",", " ")
+        return razon_social
+
     def generar_archivo_clientes_nuevos(self):
         if not self.clientes_nuevos:
             return
@@ -45,6 +50,6 @@ class GestorClientes:
         with open(self.arch_clientes_cargados, "a", encoding="latin1") as f_clientes_cargados:
             with open(self.arch_nuevos_clientes, "w", encoding="latin1") as f_clientes_nuevos:
                 for cuit in self.clientes_nuevos:
-                    razon_social = self.clientes_nuevos[cuit]
+                    razon_social = self.eliminar_comas(self.clientes_nuevos[cuit])
                     f_clientes_cargados.write(razon_social + SEPARADOR + cuit + ENTER)
                     f_clientes_nuevos.write(self.generar_linea_cliente(cuit, razon_social))
