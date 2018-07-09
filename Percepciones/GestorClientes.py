@@ -42,8 +42,8 @@ class GestorClientes:
         if not self.clientes_nuevos:
             return
 
-        with open(self.arch_clientes_cargados, "a") as f_clientes_cargados:
-            with open(self.arch_nuevos_clientes, "w") as f_clientes_nuevos:
+        with open(self.arch_clientes_cargados, "a", encoding="latin1") as f_clientes_cargados:
+            with open(self.arch_nuevos_clientes, "w", encoding="latin1") as f_clientes_nuevos:
                 for cuit in self.clientes_nuevos:
                     razon_social = self.clientes_nuevos[cuit]
                     f_clientes_cargados.write(razon_social + SEPARADOR + cuit + ENTER)

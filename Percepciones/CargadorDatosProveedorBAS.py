@@ -101,7 +101,7 @@ class CargadorDatosProveedorBAS:
 
     def procesar_linea_archivo(self, linea, percepciones, anulaciones, gestor_clientes):
         datos = self.limpiar_linea(linea)
-        datos = datos.split(SEPARADOR)
+        datos = datos.split(";")
 
         if datos[self.REGIMEN] == REGIMEN_LHE:
             return # Filtrar la linea
@@ -115,7 +115,7 @@ class CargadorDatosProveedorBAS:
         gestor_clientes.buscar_o_crear_cliente_actual(datos[self.NRO_DOC1], datos[self.NOMBRE])
 
     def cargar_datos_proveedor_bas(self, nombre_archivo, percepciones, anulaciones, gestor_clientes):
-        with open(nombre_archivo, "r") as f_datos_percepciones:
+        with open(nombre_archivo, "r", encoding="latin1") as f_datos_percepciones:
             primera_linea = True
             for linea in f_datos_percepciones:
                 if primera_linea:
