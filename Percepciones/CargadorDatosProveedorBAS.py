@@ -4,6 +4,7 @@ from Percepciones.Anulacion import Anulacion
 
 ABREVIADO_FACTURA = "FAC"
 ABREVIADO_NOTA_DE_CREDITO = "NCR"
+REGIMEN_LHE = "LHE"
 
 class CargadorDatosProveedorBAS:
     """
@@ -102,7 +103,9 @@ class CargadorDatosProveedorBAS:
         datos = self.limpiar_linea(linea)
         datos = datos.split(SEPARADOR)
 
-        if datos[self.ABREVIADO] == ABREVIADO_FACTURA:
+        if datos[self.REGIMEN] == REGIMEN_LHE:
+            return # Filtrar la linea
+        elif datos[self.ABREVIADO] == ABREVIADO_FACTURA:
             self.agregar_percepcion(datos, percepciones)
         elif ABREVIADO_NOTA_DE_CREDITO in datos[self.ABREVIADO]:
             self.agregar_anulacion(datos, anulaciones)
